@@ -1,0 +1,2616 @@
+Terminals unused in grammar
+
+    T_STRING
+    BOOL
+    LOP_EQ
+
+
+State 31 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: statements functions
+    2        | functions
+
+    3 functions: function
+    4          | functions function
+
+    5 function: T IDENTIFIER CL CR L statements R
+
+    6 statements: statement
+    7           | statements statement
+
+    8 statement: SEMICOLON
+    9          | expr SEMICOLON
+   10          | declaration SEMICOLON
+   11          | assign SEMICOLON
+   12          | while
+   13          | if
+   14          | L statements R
+   15          | L R
+   16          | for
+   17          | scanf SEMICOLON
+   18          | printf SEMICOLON
+   19          | RETURN expr SEMICOLON
+
+   20 scanf: SCANF CL scanbodys CR
+
+   21 scanbodys: scanbody
+   22          | scanbodys COMMA scanbody
+
+   23 scanbody: expr
+   24         | QU IDENTIFIER
+
+   25 printf: PRINTF CL printfbodys CR
+
+   26 printfbodys: printfbody
+   27            | printfbodys COMMA printfbody
+
+   28 printfbody: expr
+
+   29 for: FOR forcondition statement
+
+   30 forcondition: CL statement expr SEMICOLON assign CR
+   31             | CL statement expr SEMICOLON expr CR
+
+   32 if: ifbody elsebody
+   33   | ifbody
+
+   34 elsebody: ELSE statement
+
+   35 ifbody: IF CL expr CR statement
+
+   36 while: WHILE CL expr CR statement
+
+   37 assign: IDENTIFIER LOP_ASSIGN expr
+
+   38 declaration: T decs
+
+   39 decs: singledec
+   40     | singledec COMMA decs
+
+   41 singledec: IDENTIFIER LOP_ASSIGN expr
+   42          | IDENTIFIER
+
+   43 expr: IDENTIFIER
+   44     | INTEGER
+   45     | CHAR
+   46     | STRING
+   47     | IDENTIFIER PP
+   48     | IDENTIFIER MM
+   49     | PP IDENTIFIER
+   50     | MM IDENTIFIER
+   51     | IDENTIFIER PLUSE expr
+   52     | IDENTIFIER MINUSE expr
+   53     | expr EQUAL expr
+   54     | expr PLUS expr
+   55     | expr MINUS expr
+   56     | expr MUL expr
+   57     | expr DIV expr
+   58     | expr NEQUAL expr
+   59     | CL expr CR
+   60     | expr BIGGER expr
+   61     | expr BIGGERE expr
+   62     | expr LESS expr
+   63     | expr LESSE expr
+   64     | NOT expr
+   65     | expr AND expr
+   66     | expr OR expr
+   67     | expr MOD expr
+   68     | MINUS expr
+
+   69 T: T_INT
+   70  | T_CHAR
+   71  | T_BOOL
+   72  | VOID
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    T_CHAR (258) 70
+    T_INT (259) 69
+    T_STRING (260)
+    T_BOOL (261) 71
+    VOID (262) 72
+    LOP_ASSIGN (263) 37 41
+    COMMA (264) 22 27 40
+    L (265) 5 14 15
+    R (266) 5 14 15
+    CL (267) 5 20 25 30 31 35 36 59
+    CR (268) 5 20 25 30 31 35 36 59
+    SEMICOLON (269) 8 9 10 11 17 18 19 30 31
+    IDENTIFIER (270) 5 24 37 41 42 43 47 48 49 50 51 52
+    INTEGER (271) 44
+    CHAR (272) 45
+    BOOL (273)
+    STRING (274) 46
+    WHILE (275) 36
+    IF (276) 35
+    ELSE (277) 34
+    FOR (278) 29
+    PRINTF (279) 25
+    SCANF (280) 20
+    RETURN (281) 19
+    PLUSE (282) 51
+    MINUSE (283) 52
+    OR (284) 66
+    LOP_EQ (285)
+    EQUAL (286) 53
+    NEQUAL (287) 58
+    BIGGER (288) 60
+    LESS (289) 62
+    BIGGERE (290) 61
+    LESSE (291) 63
+    PLUS (292) 54
+    MINUS (293) 55 68
+    MUL (294) 56
+    DIV (295) 57
+    MOD (296) 67
+    AND (297) 65
+    NOT (298) 64
+    PP (299) 47 49
+    MM (300) 48 50
+    QU (301) 24
+
+
+Nonterminals, with rules where they appear
+
+    $accept (47)
+        on left: 0
+    program (48)
+        on left: 1 2
+        on right: 0
+    functions (49)
+        on left: 3 4
+        on right: 1 2 4
+    function (50)
+        on left: 5
+        on right: 3 4
+    statements (51)
+        on left: 6 7
+        on right: 1 5 7 14
+    statement (52)
+        on left: 8 9 10 11 12 13 14 15 16 17 18 19
+        on right: 6 7 29 30 31 34 35 36
+    scanf (53)
+        on left: 20
+        on right: 17
+    scanbodys (54)
+        on left: 21 22
+        on right: 20 22
+    scanbody (55)
+        on left: 23 24
+        on right: 21 22
+    printf (56)
+        on left: 25
+        on right: 18
+    printfbodys (57)
+        on left: 26 27
+        on right: 25 27
+    printfbody (58)
+        on left: 28
+        on right: 26 27
+    for (59)
+        on left: 29
+        on right: 16
+    forcondition (60)
+        on left: 30 31
+        on right: 29
+    if (61)
+        on left: 32 33
+        on right: 13
+    elsebody (62)
+        on left: 34
+        on right: 32
+    ifbody (63)
+        on left: 35
+        on right: 32 33
+    while (64)
+        on left: 36
+        on right: 12
+    assign (65)
+        on left: 37
+        on right: 11 30
+    declaration (66)
+        on left: 38
+        on right: 10
+    decs (67)
+        on left: 39 40
+        on right: 38 40
+    singledec (68)
+        on left: 41 42
+        on right: 39 40
+    expr (69)
+        on left: 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68
+        on right: 9 19 23 28 30 31 35 36 37 41 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68
+    T (70)
+        on left: 69 70 71 72
+        on right: 5 38
+
+
+State 0
+
+    0 $accept: . program $end
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    program      go to state 22
+    functions    go to state 23
+    function     go to state 24
+    statements   go to state 25
+    statement    go to state 26
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 36
+
+
+State 1
+
+   70 T: T_CHAR .
+
+    $default  reduce using rule 70 (T)
+
+
+State 2
+
+   69 T: T_INT .
+
+    $default  reduce using rule 69 (T)
+
+
+State 3
+
+   71 T: T_BOOL .
+
+    $default  reduce using rule 71 (T)
+
+
+State 4
+
+   72 T: VOID .
+
+    $default  reduce using rule 72 (T)
+
+
+State 5
+
+   14 statement: L . statements R
+   15          | L . R
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    R           shift, and go to state 37
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    statements   go to state 38
+    statement    go to state 26
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 39
+
+
+State 6
+
+   59 expr: CL . expr CR
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 41
+
+
+State 7
+
+    8 statement: SEMICOLON .
+
+    $default  reduce using rule 8 (statement)
+
+
+State 8
+
+   37 assign: IDENTIFIER . LOP_ASSIGN expr
+   43 expr: IDENTIFIER .
+   47     | IDENTIFIER . PP
+   48     | IDENTIFIER . MM
+   51     | IDENTIFIER . PLUSE expr
+   52     | IDENTIFIER . MINUSE expr
+
+    LOP_ASSIGN  shift, and go to state 42
+    PLUSE       shift, and go to state 43
+    MINUSE      shift, and go to state 44
+    PP          shift, and go to state 45
+    MM          shift, and go to state 46
+
+    $default  reduce using rule 43 (expr)
+
+
+State 9
+
+   44 expr: INTEGER .
+
+    $default  reduce using rule 44 (expr)
+
+
+State 10
+
+   45 expr: CHAR .
+
+    $default  reduce using rule 45 (expr)
+
+
+State 11
+
+   46 expr: STRING .
+
+    $default  reduce using rule 46 (expr)
+
+
+State 12
+
+   36 while: WHILE . CL expr CR statement
+
+    CL  shift, and go to state 47
+
+
+State 13
+
+   35 ifbody: IF . CL expr CR statement
+
+    CL  shift, and go to state 48
+
+
+State 14
+
+   29 for: FOR . forcondition statement
+
+    CL  shift, and go to state 49
+
+    forcondition  go to state 50
+
+
+State 15
+
+   25 printf: PRINTF . CL printfbodys CR
+
+    CL  shift, and go to state 51
+
+
+State 16
+
+   20 scanf: SCANF . CL scanbodys CR
+
+    CL  shift, and go to state 52
+
+
+State 17
+
+   19 statement: RETURN . expr SEMICOLON
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 53
+
+
+State 18
+
+   68 expr: MINUS . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 54
+
+
+State 19
+
+   64 expr: NOT . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 55
+
+
+State 20
+
+   49 expr: PP . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 56
+
+
+State 21
+
+   50 expr: MM . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 57
+
+
+State 22
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 58
+
+
+State 23
+
+    2 program: functions .
+    4 functions: functions . function
+
+    T_CHAR  shift, and go to state 1
+    T_INT   shift, and go to state 2
+    T_BOOL  shift, and go to state 3
+    VOID    shift, and go to state 4
+
+    $default  reduce using rule 2 (program)
+
+    function  go to state 59
+    T         go to state 60
+
+
+State 24
+
+    3 functions: function .
+
+    $default  reduce using rule 3 (functions)
+
+
+State 25
+
+    1 program: statements . functions
+    7 statements: statements . statement
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    functions    go to state 61
+    function     go to state 24
+    statement    go to state 62
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 36
+
+
+State 26
+
+    6 statements: statement .
+
+    $default  reduce using rule 6 (statements)
+
+
+State 27
+
+   17 statement: scanf . SEMICOLON
+
+    SEMICOLON  shift, and go to state 63
+
+
+State 28
+
+   18 statement: printf . SEMICOLON
+
+    SEMICOLON  shift, and go to state 64
+
+
+State 29
+
+   16 statement: for .
+
+    $default  reduce using rule 16 (statement)
+
+
+State 30
+
+   13 statement: if .
+
+    $default  reduce using rule 13 (statement)
+
+
+State 31
+
+   32 if: ifbody . elsebody
+   33   | ifbody .
+
+    ELSE  shift, and go to state 65
+
+    ELSE      [reduce using rule 33 (if)]
+    $default  reduce using rule 33 (if)
+
+    elsebody  go to state 66
+
+
+State 32
+
+   12 statement: while .
+
+    $default  reduce using rule 12 (statement)
+
+
+State 33
+
+   11 statement: assign . SEMICOLON
+
+    SEMICOLON  shift, and go to state 67
+
+
+State 34
+
+   10 statement: declaration . SEMICOLON
+
+    SEMICOLON  shift, and go to state 68
+
+
+State 35
+
+    9 statement: expr . SEMICOLON
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    SEMICOLON  shift, and go to state 69
+    OR         shift, and go to state 70
+    EQUAL      shift, and go to state 71
+    NEQUAL     shift, and go to state 72
+    BIGGER     shift, and go to state 73
+    LESS       shift, and go to state 74
+    BIGGERE    shift, and go to state 75
+    LESSE      shift, and go to state 76
+    PLUS       shift, and go to state 77
+    MINUS      shift, and go to state 78
+    MUL        shift, and go to state 79
+    DIV        shift, and go to state 80
+    MOD        shift, and go to state 81
+    AND        shift, and go to state 82
+
+
+State 36
+
+    5 function: T . IDENTIFIER CL CR L statements R
+   38 declaration: T . decs
+
+    IDENTIFIER  shift, and go to state 83
+
+    decs       go to state 84
+    singledec  go to state 85
+
+
+State 37
+
+   15 statement: L R .
+
+    $default  reduce using rule 15 (statement)
+
+
+State 38
+
+    7 statements: statements . statement
+   14 statement: L statements . R
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    R           shift, and go to state 86
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    statement    go to state 62
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 39
+
+
+State 39
+
+   38 declaration: T . decs
+
+    IDENTIFIER  shift, and go to state 87
+
+    decs       go to state 84
+    singledec  go to state 85
+
+
+State 40
+
+   43 expr: IDENTIFIER .
+   47     | IDENTIFIER . PP
+   48     | IDENTIFIER . MM
+   51     | IDENTIFIER . PLUSE expr
+   52     | IDENTIFIER . MINUSE expr
+
+    PLUSE   shift, and go to state 43
+    MINUSE  shift, and go to state 44
+    PP      shift, and go to state 45
+    MM      shift, and go to state 46
+
+    $default  reduce using rule 43 (expr)
+
+
+State 41
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   59     | CL expr . CR
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    CR       shift, and go to state 88
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+
+State 42
+
+   37 assign: IDENTIFIER LOP_ASSIGN . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 89
+
+
+State 43
+
+   51 expr: IDENTIFIER PLUSE . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 90
+
+
+State 44
+
+   52 expr: IDENTIFIER MINUSE . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 91
+
+
+State 45
+
+   47 expr: IDENTIFIER PP .
+
+    $default  reduce using rule 47 (expr)
+
+
+State 46
+
+   48 expr: IDENTIFIER MM .
+
+    $default  reduce using rule 48 (expr)
+
+
+State 47
+
+   36 while: WHILE CL . expr CR statement
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 92
+
+
+State 48
+
+   35 ifbody: IF CL . expr CR statement
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 93
+
+
+State 49
+
+   30 forcondition: CL . statement expr SEMICOLON assign CR
+   31             | CL . statement expr SEMICOLON expr CR
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    statement    go to state 94
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 39
+
+
+State 50
+
+   29 for: FOR forcondition . statement
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    statement    go to state 95
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 39
+
+
+State 51
+
+   25 printf: PRINTF CL . printfbodys CR
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    printfbodys  go to state 96
+    printfbody   go to state 97
+    expr         go to state 98
+
+
+State 52
+
+   20 scanf: SCANF CL . scanbodys CR
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+    QU          shift, and go to state 99
+
+    scanbodys  go to state 100
+    scanbody   go to state 101
+    expr       go to state 102
+
+
+State 53
+
+   19 statement: RETURN expr . SEMICOLON
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    SEMICOLON  shift, and go to state 103
+    OR         shift, and go to state 70
+    EQUAL      shift, and go to state 71
+    NEQUAL     shift, and go to state 72
+    BIGGER     shift, and go to state 73
+    LESS       shift, and go to state 74
+    BIGGERE    shift, and go to state 75
+    LESSE      shift, and go to state 76
+    PLUS       shift, and go to state 77
+    MINUS      shift, and go to state 78
+    MUL        shift, and go to state 79
+    DIV        shift, and go to state 80
+    MOD        shift, and go to state 81
+    AND        shift, and go to state 82
+
+
+State 54
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+   68     | MINUS expr .
+
+    MUL  shift, and go to state 79
+    DIV  shift, and go to state 80
+    MOD  shift, and go to state 81
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 68 (expr)
+
+
+State 55
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   64     | NOT expr .
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 64 (expr)
+
+
+State 56
+
+   49 expr: PP IDENTIFIER .
+
+    $default  reduce using rule 49 (expr)
+
+
+State 57
+
+   50 expr: MM IDENTIFIER .
+
+    $default  reduce using rule 50 (expr)
+
+
+State 58
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 59
+
+    4 functions: functions function .
+
+    $default  reduce using rule 4 (functions)
+
+
+State 60
+
+    5 function: T . IDENTIFIER CL CR L statements R
+
+    IDENTIFIER  shift, and go to state 104
+
+
+State 61
+
+    1 program: statements functions .
+    4 functions: functions . function
+
+    T_CHAR  shift, and go to state 1
+    T_INT   shift, and go to state 2
+    T_BOOL  shift, and go to state 3
+    VOID    shift, and go to state 4
+
+    $default  reduce using rule 1 (program)
+
+    function  go to state 59
+    T         go to state 60
+
+
+State 62
+
+    7 statements: statements statement .
+
+    $default  reduce using rule 7 (statements)
+
+
+State 63
+
+   17 statement: scanf SEMICOLON .
+
+    $default  reduce using rule 17 (statement)
+
+
+State 64
+
+   18 statement: printf SEMICOLON .
+
+    $default  reduce using rule 18 (statement)
+
+
+State 65
+
+   34 elsebody: ELSE . statement
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    statement    go to state 105
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 39
+
+
+State 66
+
+   32 if: ifbody elsebody .
+
+    $default  reduce using rule 32 (if)
+
+
+State 67
+
+   11 statement: assign SEMICOLON .
+
+    $default  reduce using rule 11 (statement)
+
+
+State 68
+
+   10 statement: declaration SEMICOLON .
+
+    $default  reduce using rule 10 (statement)
+
+
+State 69
+
+    9 statement: expr SEMICOLON .
+
+    $default  reduce using rule 9 (statement)
+
+
+State 70
+
+   66 expr: expr OR . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 106
+
+
+State 71
+
+   53 expr: expr EQUAL . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 107
+
+
+State 72
+
+   58 expr: expr NEQUAL . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 108
+
+
+State 73
+
+   60 expr: expr BIGGER . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 109
+
+
+State 74
+
+   62 expr: expr LESS . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 110
+
+
+State 75
+
+   61 expr: expr BIGGERE . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 111
+
+
+State 76
+
+   63 expr: expr LESSE . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 112
+
+
+State 77
+
+   54 expr: expr PLUS . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 113
+
+
+State 78
+
+   55 expr: expr MINUS . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 114
+
+
+State 79
+
+   56 expr: expr MUL . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 115
+
+
+State 80
+
+   57 expr: expr DIV . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 116
+
+
+State 81
+
+   67 expr: expr MOD . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 117
+
+
+State 82
+
+   65 expr: expr AND . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 118
+
+
+State 83
+
+    5 function: T IDENTIFIER . CL CR L statements R
+   41 singledec: IDENTIFIER . LOP_ASSIGN expr
+   42          | IDENTIFIER .
+
+    LOP_ASSIGN  shift, and go to state 119
+    CL          shift, and go to state 120
+
+    $default  reduce using rule 42 (singledec)
+
+
+State 84
+
+   38 declaration: T decs .
+
+    $default  reduce using rule 38 (declaration)
+
+
+State 85
+
+   39 decs: singledec .
+   40     | singledec . COMMA decs
+
+    COMMA  shift, and go to state 121
+
+    $default  reduce using rule 39 (decs)
+
+
+State 86
+
+   14 statement: L statements R .
+
+    $default  reduce using rule 14 (statement)
+
+
+State 87
+
+   41 singledec: IDENTIFIER . LOP_ASSIGN expr
+   42          | IDENTIFIER .
+
+    LOP_ASSIGN  shift, and go to state 119
+
+    $default  reduce using rule 42 (singledec)
+
+
+State 88
+
+   59 expr: CL expr CR .
+
+    $default  reduce using rule 59 (expr)
+
+
+State 89
+
+   37 assign: IDENTIFIER LOP_ASSIGN expr .
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+    $default  reduce using rule 37 (assign)
+
+
+State 90
+
+   51 expr: IDENTIFIER PLUSE expr .
+   53     | expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+    $default  reduce using rule 51 (expr)
+
+
+State 91
+
+   52 expr: IDENTIFIER MINUSE expr .
+   53     | expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+    $default  reduce using rule 52 (expr)
+
+
+State 92
+
+   36 while: WHILE CL expr . CR statement
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    CR       shift, and go to state 122
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+
+State 93
+
+   35 ifbody: IF CL expr . CR statement
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    CR       shift, and go to state 123
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+
+State 94
+
+   30 forcondition: CL statement . expr SEMICOLON assign CR
+   31             | CL statement . expr SEMICOLON expr CR
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 124
+
+
+State 95
+
+   29 for: FOR forcondition statement .
+
+    $default  reduce using rule 29 (for)
+
+
+State 96
+
+   25 printf: PRINTF CL printfbodys . CR
+   27 printfbodys: printfbodys . COMMA printfbody
+
+    COMMA  shift, and go to state 125
+    CR     shift, and go to state 126
+
+
+State 97
+
+   26 printfbodys: printfbody .
+
+    $default  reduce using rule 26 (printfbodys)
+
+
+State 98
+
+   28 printfbody: expr .
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+    $default  reduce using rule 28 (printfbody)
+
+
+State 99
+
+   24 scanbody: QU . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 127
+
+
+State 100
+
+   20 scanf: SCANF CL scanbodys . CR
+   22 scanbodys: scanbodys . COMMA scanbody
+
+    COMMA  shift, and go to state 128
+    CR     shift, and go to state 129
+
+
+State 101
+
+   21 scanbodys: scanbody .
+
+    $default  reduce using rule 21 (scanbodys)
+
+
+State 102
+
+   23 scanbody: expr .
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+    $default  reduce using rule 23 (scanbody)
+
+
+State 103
+
+   19 statement: RETURN expr SEMICOLON .
+
+    $default  reduce using rule 19 (statement)
+
+
+State 104
+
+    5 function: T IDENTIFIER . CL CR L statements R
+
+    CL  shift, and go to state 120
+
+
+State 105
+
+   34 elsebody: ELSE statement .
+
+    $default  reduce using rule 34 (elsebody)
+
+
+State 106
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   66     | expr OR expr .
+   67     | expr . MOD expr
+
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+    $default  reduce using rule 66 (expr)
+
+
+State 107
+
+   53 expr: expr . EQUAL expr
+   53     | expr EQUAL expr .
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+    $default  reduce using rule 53 (expr)
+
+
+State 108
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   58     | expr NEQUAL expr .
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+    $default  reduce using rule 58 (expr)
+
+
+State 109
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   60     | expr BIGGER expr .
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    PLUS   shift, and go to state 77
+    MINUS  shift, and go to state 78
+    MUL    shift, and go to state 79
+    DIV    shift, and go to state 80
+    MOD    shift, and go to state 81
+    AND    shift, and go to state 82
+
+    $default  reduce using rule 60 (expr)
+
+
+State 110
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   62     | expr LESS expr .
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    PLUS   shift, and go to state 77
+    MINUS  shift, and go to state 78
+    MUL    shift, and go to state 79
+    DIV    shift, and go to state 80
+    MOD    shift, and go to state 81
+    AND    shift, and go to state 82
+
+    $default  reduce using rule 62 (expr)
+
+
+State 111
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   61     | expr BIGGERE expr .
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    PLUS   shift, and go to state 77
+    MINUS  shift, and go to state 78
+    MUL    shift, and go to state 79
+    DIV    shift, and go to state 80
+    MOD    shift, and go to state 81
+    AND    shift, and go to state 82
+
+    $default  reduce using rule 61 (expr)
+
+
+State 112
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   63     | expr LESSE expr .
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    PLUS   shift, and go to state 77
+    MINUS  shift, and go to state 78
+    MUL    shift, and go to state 79
+    DIV    shift, and go to state 80
+    MOD    shift, and go to state 81
+    AND    shift, and go to state 82
+
+    $default  reduce using rule 63 (expr)
+
+
+State 113
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   54     | expr PLUS expr .
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    MUL  shift, and go to state 79
+    DIV  shift, and go to state 80
+    MOD  shift, and go to state 81
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 54 (expr)
+
+
+State 114
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   55     | expr MINUS expr .
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    MUL  shift, and go to state 79
+    DIV  shift, and go to state 80
+    MOD  shift, and go to state 81
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 55 (expr)
+
+
+State 115
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   56     | expr MUL expr .
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 56 (expr)
+
+
+State 116
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   57     | expr DIV expr .
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 57 (expr)
+
+
+State 117
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+   67     | expr MOD expr .
+
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 67 (expr)
+
+
+State 118
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   65     | expr AND expr .
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 65 (expr)
+
+
+State 119
+
+   41 singledec: IDENTIFIER LOP_ASSIGN . expr
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    expr  go to state 130
+
+
+State 120
+
+    5 function: T IDENTIFIER CL . CR L statements R
+
+    CR  shift, and go to state 131
+
+
+State 121
+
+   40 decs: singledec COMMA . decs
+
+    IDENTIFIER  shift, and go to state 87
+
+    decs       go to state 132
+    singledec  go to state 85
+
+
+State 122
+
+   36 while: WHILE CL expr CR . statement
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    statement    go to state 133
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 39
+
+
+State 123
+
+   35 ifbody: IF CL expr CR . statement
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    statement    go to state 134
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 39
+
+
+State 124
+
+   30 forcondition: CL statement expr . SEMICOLON assign CR
+   31             | CL statement expr . SEMICOLON expr CR
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    SEMICOLON  shift, and go to state 135
+    OR         shift, and go to state 70
+    EQUAL      shift, and go to state 71
+    NEQUAL     shift, and go to state 72
+    BIGGER     shift, and go to state 73
+    LESS       shift, and go to state 74
+    BIGGERE    shift, and go to state 75
+    LESSE      shift, and go to state 76
+    PLUS       shift, and go to state 77
+    MINUS      shift, and go to state 78
+    MUL        shift, and go to state 79
+    DIV        shift, and go to state 80
+    MOD        shift, and go to state 81
+    AND        shift, and go to state 82
+
+
+State 125
+
+   27 printfbodys: printfbodys COMMA . printfbody
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    printfbody  go to state 136
+    expr        go to state 98
+
+
+State 126
+
+   25 printf: PRINTF CL printfbodys CR .
+
+    $default  reduce using rule 25 (printf)
+
+
+State 127
+
+   24 scanbody: QU IDENTIFIER .
+
+    $default  reduce using rule 24 (scanbody)
+
+
+State 128
+
+   22 scanbodys: scanbodys COMMA . scanbody
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 40
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+    QU          shift, and go to state 99
+
+    scanbody  go to state 137
+    expr      go to state 102
+
+
+State 129
+
+   20 scanf: SCANF CL scanbodys CR .
+
+    $default  reduce using rule 20 (scanf)
+
+
+State 130
+
+   41 singledec: IDENTIFIER LOP_ASSIGN expr .
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+    $default  reduce using rule 41 (singledec)
+
+
+State 131
+
+    5 function: T IDENTIFIER CL CR . L statements R
+
+    L  shift, and go to state 138
+
+
+State 132
+
+   40 decs: singledec COMMA decs .
+
+    $default  reduce using rule 40 (decs)
+
+
+State 133
+
+   36 while: WHILE CL expr CR statement .
+
+    $default  reduce using rule 36 (while)
+
+
+State 134
+
+   35 ifbody: IF CL expr CR statement .
+
+    $default  reduce using rule 35 (ifbody)
+
+
+State 135
+
+   30 forcondition: CL statement expr SEMICOLON . assign CR
+   31             | CL statement expr SEMICOLON . expr CR
+
+    CL          shift, and go to state 6
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    assign  go to state 139
+    expr    go to state 140
+
+
+State 136
+
+   27 printfbodys: printfbodys COMMA printfbody .
+
+    $default  reduce using rule 27 (printfbodys)
+
+
+State 137
+
+   22 scanbodys: scanbodys COMMA scanbody .
+
+    $default  reduce using rule 22 (scanbodys)
+
+
+State 138
+
+    5 function: T IDENTIFIER CL CR L . statements R
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    statements   go to state 141
+    statement    go to state 26
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 39
+
+
+State 139
+
+   30 forcondition: CL statement expr SEMICOLON assign . CR
+
+    CR  shift, and go to state 142
+
+
+State 140
+
+   31 forcondition: CL statement expr SEMICOLON expr . CR
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    CR       shift, and go to state 143
+    OR       shift, and go to state 70
+    EQUAL    shift, and go to state 71
+    NEQUAL   shift, and go to state 72
+    BIGGER   shift, and go to state 73
+    LESS     shift, and go to state 74
+    BIGGERE  shift, and go to state 75
+    LESSE    shift, and go to state 76
+    PLUS     shift, and go to state 77
+    MINUS    shift, and go to state 78
+    MUL      shift, and go to state 79
+    DIV      shift, and go to state 80
+    MOD      shift, and go to state 81
+    AND      shift, and go to state 82
+
+
+State 141
+
+    5 function: T IDENTIFIER CL CR L statements . R
+    7 statements: statements . statement
+
+    T_CHAR      shift, and go to state 1
+    T_INT       shift, and go to state 2
+    T_BOOL      shift, and go to state 3
+    VOID        shift, and go to state 4
+    L           shift, and go to state 5
+    R           shift, and go to state 144
+    CL          shift, and go to state 6
+    SEMICOLON   shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    INTEGER     shift, and go to state 9
+    CHAR        shift, and go to state 10
+    STRING      shift, and go to state 11
+    WHILE       shift, and go to state 12
+    IF          shift, and go to state 13
+    FOR         shift, and go to state 14
+    PRINTF      shift, and go to state 15
+    SCANF       shift, and go to state 16
+    RETURN      shift, and go to state 17
+    MINUS       shift, and go to state 18
+    NOT         shift, and go to state 19
+    PP          shift, and go to state 20
+    MM          shift, and go to state 21
+
+    statement    go to state 62
+    scanf        go to state 27
+    printf       go to state 28
+    for          go to state 29
+    if           go to state 30
+    ifbody       go to state 31
+    while        go to state 32
+    assign       go to state 33
+    declaration  go to state 34
+    expr         go to state 35
+    T            go to state 39
+
+
+State 142
+
+   30 forcondition: CL statement expr SEMICOLON assign CR .
+
+    $default  reduce using rule 30 (forcondition)
+
+
+State 143
+
+   31 forcondition: CL statement expr SEMICOLON expr CR .
+
+    $default  reduce using rule 31 (forcondition)
+
+
+State 144
+
+    5 function: T IDENTIFIER CL CR L statements R .
+
+    $default  reduce using rule 5 (function)
